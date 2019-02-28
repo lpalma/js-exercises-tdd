@@ -15,3 +15,7 @@ test("pasword should contain at least one upper letter", () => {
 test("password should contain at least one lowercase letter", () => {
     expect(() => verifier("ABCDEFGHI")).toThrow(Error("Password must contain at least 1 lowercase character"))
 })
+
+test("password should contain at least one number", () => {
+    expect(() => verifier("Abcdefghi")).toThrow(Error("Password must contain at least 1 number"))
+})
