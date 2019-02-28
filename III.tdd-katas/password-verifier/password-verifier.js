@@ -1,14 +1,12 @@
 const verifier = (password) => {
-    if (password == null) {
-        throw new Error("Password must not be null")
-    }
-    
-    if (password.length < 9) {
-        throw new Error("Password must be larger than 8 characters")
-    }
+    validate(() => password == null, "Password must not be null")
+    validate(() => password.length < 9, "Password must be larger than 8 characters")
+    validate(() => password.split().every((char) => char.toLowerCase() == char), "Password must contain at least 1 uppercase character")
+}
 
-    if (password.split().every((char) => char.toLowerCase() == char)) {
-        throw new Error("Password must contain at least 1 uppercase character")
+const validate = (failsValidation, errorMsg) => {
+    if (failsValidation()) {
+        throw new Error(errorMsg)
     }
 }
 
