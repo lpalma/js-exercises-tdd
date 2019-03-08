@@ -3,10 +3,16 @@ const verifier = (password) => {
         throw Error("Password must not be null")
     }
 
+    if (password.length < 9) {
+        throw Error("Password must be larger than 8 characters")
+    }
+
+    if (password.toUpperCase() == password) {
+        throw Error("Password must contain at least 1 lowercase character")
+    }
+
     const validations = [
-        minimumLetters,
         minimumUpperCaseCharacters,
-        minimumLowerCaseCharacters,
         minimumNumbers
     ]
 
@@ -20,16 +26,8 @@ const verifier = (password) => {
     }
 }
 
-const minimumLetters = (password) => {
-    return password.length < 9 ? "Password must be larger than 8 characters" : ""
-}
-
 const minimumUpperCaseCharacters = (password) => {
     return password.toLowerCase() == password ? "Password must contain at least 1 uppercase character" : ""
-}
-
-const minimumLowerCaseCharacters = (password) => {
-    return password.toUpperCase() == password ? "Password must contain at least 1 lowercase character" : ""
 }
 
 const minimumNumbers = (password) => {

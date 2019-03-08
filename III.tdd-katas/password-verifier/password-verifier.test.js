@@ -5,11 +5,7 @@ test("password cannot be null", () => {
 })
 
 test("password should be larger than 8 characters", () => {
-    try {
-        verifier("abcdefgh")
-    } catch(e) {
-        expect(e.message).toContain("Password must be larger than 8 characters")
-    }
+    expect(() => verifier("abcdefgh")).toThrow(Error("Password must be larger than 8 characters"))
 })
 
 test("password should contain at least one upper letter", () => {
@@ -21,11 +17,7 @@ test("password should contain at least one upper letter", () => {
 })
 
 test("password should contain at least one lowercase letter", () => {
-    try {
-        verifier("ABCDEFGHI")
-    } catch(e) {
-        expect(e.message).toContain("Password must contain at least 1 lowercase character")
-    }
+    expect(() => verifier("ABCDEFGHI")).toThrow(Error("Password must contain at least 1 lowercase character"))
 })
 
 test("password should contain at least one number", () => {
@@ -41,5 +33,5 @@ test("password should be ok if it passes all verifications", () => {
 })
 
 test("password should be ok if it passes at least three verifications", () => {
-    expect(() => verifier("A1")).not.toThrow(Error)
+    expect(() => verifier("Abcdefghi1")).not.toThrow(Error)
 })
