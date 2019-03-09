@@ -15,4 +15,4 @@ Create a Password verifications class called “PasswordVerifier”.
 
 2. Add feature: Password is OK if at least four of the previous conditions is true
 3. Add feature: password is never OK if item 1.4 is not true.
-4. Assume Each verification takes 1 second to complete. How would you solve  items 2 and 3  so tests can run faster?
+4. Each verification takes 1 second to complete. How would you solve  items 2 and 3  so tests can run faster?
