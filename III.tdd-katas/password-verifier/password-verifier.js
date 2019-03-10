@@ -16,7 +16,9 @@ class PasswordVerifier {
             throw Error("password should have one lowercase letter at least")
         }
 
-        throw Error("password should have one number at least")
+        if(password.split("").every(char => isNaN(char))) {
+            throw Error("password should have one number at least")
+        }
     }
 }
 

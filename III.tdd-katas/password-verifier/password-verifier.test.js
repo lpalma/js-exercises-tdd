@@ -21,3 +21,7 @@ test("Password should have at least one lowercase letter", () =>{
 test("Password contain at least one number", () =>{
     expect(() => passwordVerifier.verify("Abcdefghi")).toThrow(Error("password should have one number at least"))
 })
+
+test("Password should be valid if passes all validations", () =>{
+    expect(() => passwordVerifier.verify("Abcdefghi1")).not.toThrow(Error)
+})
