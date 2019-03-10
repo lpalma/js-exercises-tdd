@@ -8,7 +8,11 @@ class PasswordVerifier {
             throw Error("password should be larger than 8 chararacters")
         }
 
-        throw Error("password should have one uppercase letter at least")
+        if (password.toLowerCase() == password) {
+            throw Error("password should have one uppercase letter at least")
+        }
+
+        throw Error("password should have one lowercase letter at least")
     }
 }
 
