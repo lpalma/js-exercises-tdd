@@ -4,7 +4,11 @@ class PasswordVerifier {
             throw Error("password should not be null")
         }
 
-        throw Error("password should be larger than 8 chararacters")
+        if (password.length < 9) {
+            throw Error("password should be larger than 8 chararacters")
+        }
+
+        throw Error("password should have one uppercase letter at least")
     }
 }
 
