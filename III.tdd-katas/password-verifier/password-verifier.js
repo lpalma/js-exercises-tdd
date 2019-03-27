@@ -1,11 +1,11 @@
 class PasswordVerifier {
     verify(password) {
         notNull(password)
+        atLeastOneLowerCaseCharacter(password)
 
         const validations = [
             largerThanEightCharacters,
             atLeastOneUpperCaseCharacter,
-            atLeastOneLowerCaseCharacter,
             atLeastOneNumber
         ]
 
@@ -35,7 +35,9 @@ const atLeastOneUpperCaseCharacter = (password) => {
 }
 
 const atLeastOneLowerCaseCharacter = (password) => {
-    return password.toUpperCase() == password ? "password should have one lowercase letter at least" : ""
+    if (password.toUpperCase() == password) {
+        throw Error("password should have one lowercase letter at least")
+    }
 }
 
 const atLeastOneNumber = (password) => {
