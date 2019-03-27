@@ -1,10 +1,22 @@
 class PasswordVerifier {
     verify(password) {
         notNull(password)
-        largerThanEightCharacters(password)
-        atLeastOneUpperCaseCharacter(password)
-        atLeastOneLowerCaseCharacter(password)
-        atLeastOneNumber(password)
+
+        const validations = [
+            largerThanEightCharacters,
+            atLeastOneUpperCaseCharacter,
+            atLeastOneLowerCaseCharacter,
+            atLeastOneNumber
+        ]
+
+        const errors = validations
+            .map(validation => validation(password))
+            .filter(error => error != "")
+
+        if (errors.length > 1) {
+            const msg = errors.join()
+            throw Error(msg)
+        }
     }
 }
 
@@ -15,27 +27,19 @@ const notNull = (password) => {
 }
 
 const largerThanEightCharacters = (password) => {
-    if (password.length < 9) {
-        throw Error("password should be larger than 8 chararacters")
-    }
+    return password.length < 9 ? "password should be larger than 8 chararacters" : ""
 }
 
 const atLeastOneUpperCaseCharacter = (password) => {
-    if (password.toLowerCase() == password) {
-        throw Error("password should have one uppercase letter at least")
-    }
+    return password.toLowerCase() == password ? "password should have one uppercase letter at least" : "" 
 }
 
 const atLeastOneLowerCaseCharacter = (password) => {
-    if (password.toUpperCase() == password) {
-        throw Error("password should have one lowercase letter at least")
-    }
+    return password.toUpperCase() == password ? "password should have one lowercase letter at least" : ""
 }
 
 const atLeastOneNumber = (password) => {
-    if (password.split("").every(char => isNaN(char))) {
-        throw Error("password should have one number at least")
-    }
+    return password.split("").every(char => isNaN(char)) ? "password should have one number at least" : ""
 }
 
 module.exports = PasswordVerifier
